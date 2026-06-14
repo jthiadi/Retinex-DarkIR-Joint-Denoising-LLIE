@@ -1,0 +1,43 @@
+# A4 — A3 loss stack + Retinex front-end, w=32.
+network:
+  name: RetinexDarkIR
+  img_channels: 3
+  width: 32
+  middle_blk_num_enc: 2
+  middle_blk_num_dec: 2
+  enc_blk_nums: [1, 2, 3]
+  dec_blk_nums: [3, 1, 1]
+  dilations: [1, 4, 9]
+  extra_depth_wise: true
+  use_retinex: true
+  illum_base: 32
+
+train:
+  resume: result_checkpoints/darkir_w32_baseline.pth
+  resume_weights_only: true
+  epochs: 100
+  batch_size: 4
+  crop_size: 256
+  lr_initial: 0.00005
+  weight_decay: 0.0001
+  betas: [0.9, 0.999]
+  eta_min: 0.000001
+  num_workers: 0
+  val_every: 1
+  val_max_batches: 0
+  val_lpips: true
+  save_by: lpips
+
+loss:
+  w_l1: 1.0
+  w_lol: 1.0
+  w_edge: 50.0
+  w_lpips: 0.01
+  hetero: true
+
+dataset:
+  train_dir: ../dataset/train
+  val_dir: ../dataset/val
+
+save:
+  checkpoint_dir: result_checkpoints/ablation/A4

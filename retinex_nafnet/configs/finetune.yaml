@@ -1,0 +1,46 @@
+data:
+  root: ..
+  train_dir: dataset/train
+  val_dir: dataset/val
+
+model:
+  type: retinex_nafnet
+  width: 40
+  enc_blocks: [2, 2, 4, 4]
+  dec_blocks: [2, 2, 2]
+  middle_blocks: 6
+
+train:
+  text_bias_tries: 0
+  stages:
+    - name: s512
+      crop: 512
+      batch_size: 1
+      grad_accum: 4
+      steps: 60000
+      lr: 2.0e-5
+  val_crop: 512
+  val_max_batches: 80
+  num_workers: 2
+  amp: true
+  amp_dtype: bfloat16
+  ema_decay: 0.9995
+  grad_clip: 1.0
+  empty_cache_after_val: true
+  log_every: 100
+  val_every: 3000
+  save_every: 5000
+
+loss:
+  w_char: 1.0
+  w_l1: 0.5
+  w_luma: 0.5
+  w_msssim: 0.25
+  w_perc: 0.05
+  w_fft: 0.03
+  hetero: true
+  perc_size: 384
+
+infer:
+  tta: true
+  checkpoint: runs/finetuned.pt
