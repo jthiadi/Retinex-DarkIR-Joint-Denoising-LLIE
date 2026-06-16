@@ -39,4 +39,4 @@ dataset:
   val_dir: ../dataset/val
 
 save:
-  checkpoint_dir: result_checkpoints/ablation/A2
+  checkpoint_dir: result_checkpoints/ablation/A3
