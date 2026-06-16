@@ -32,7 +32,7 @@ loss:
   w_l1: 1.0
   w_lol: 1.0
   w_edge: 50.0
-  w_lpips: 0.01
+  w_lpips: 0.00
   hetero: true
 
 dataset:
