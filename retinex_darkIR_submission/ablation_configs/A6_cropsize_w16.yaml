@@ -31,7 +31,7 @@ train:
 loss:
   w_l1: 1.0
   w_lol: 1.0
-  w_edge: 0.0
+  w_edge: 50.0
   w_lpips: 0.0
   hetero: true
 
