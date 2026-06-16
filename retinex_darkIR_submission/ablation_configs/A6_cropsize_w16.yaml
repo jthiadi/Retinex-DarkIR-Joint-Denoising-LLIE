@@ -13,8 +13,6 @@ network:
   illum_base: 16
 
 train:
-  resume: result_checkpoints/retinex_DarkIR_M.pth
-  resume_weights_only: true
   epochs: 100
   batch_size: 4
   crop_size: 320
